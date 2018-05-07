@@ -5,8 +5,8 @@ My hope is to make this the dockerized version of AtoMiC Toolkit. To start off, 
 
 ######### FRONTENDS ##########
 
-# Portainer - WebUI for Containers
-# Organizer - Unified HTPC/Home Server Web Interface
+Portainer - WebUI for Containers
+Organizer - Unified HTPC/Home Server Web Interface
 
 ######### DOCKER RELATED ##########
 
