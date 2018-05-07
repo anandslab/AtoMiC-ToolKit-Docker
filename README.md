@@ -5,7 +5,7 @@ My hope is to make this the dockerized version of AtoMiC Toolkit. To start off, 
 
 ######### FRONTENDS ##########
 
-Portainer - WebUI for Containers
+Portainer - WebUI for Containers<br/>
 Organizer - Unified HTPC/Home Server Web Interface
 
 ######### DOCKER RELATED ##########
@@ -18,31 +18,31 @@ Organizer - Unified HTPC/Home Server Web Interface
 
 ######### DOWNLOADERS ##########
 
-# Transmission with VPN – Bittorrent Downloader
-# qBittorrent without VPN – Bittorrent Downloader (Alternative)
-# SABnzbd – Usenet (NZB) Downloader
-# NZBGet – Usenet (NZB) Downloader (Alternative)
+# Transmission with VPN – Bittorrent Downloader<br/>
+# qBittorrent without VPN – Bittorrent Downloader (Alternative)<br/>
+# SABnzbd – Usenet (NZB) Downloader<br/>
+# NZBGet – Usenet (NZB) Downloader (Alternative)<br/>
 
 ######### PERSONAL VIDEO RECORDERS ##########
 
-# Radarr – Movie Download and Management
-# CouchPotato – Movie Download and Management (Alternative)
-# Sonarr – TV Show Download and Management
-# SickRage – TV Show Download and Management (Alternative)
+# Radarr – Movie Download and Management<br/>
+# CouchPotato – Movie Download and Management (Alternative)<br/>
+# Sonarr – TV Show Download and Management<br/>
+# SickRage – TV Show Download and Management (Alternative)<br/>
 
-######### MEDIA SERVER APPS ##########
+# MEDIA SERVER APPS
 
-# Plex Media Server
-# Tautulli (aka PlexPy) – Monitoring Plex Usage
-# Ombi – Accept Requests for your Media Server
+Plex Media Server<br/>
+Tautulli (aka PlexPy) – Monitoring Plex Usage<br/>
+Ombi – Accept Requests for your Media Server<br/>
 
-######### SEARCHERS ##########
+# SEARCHERS
 
-# NZBHydra – NZB Meta Search
-# Jackett – Torrent Proxy
+NZBHydra – NZB Meta Search<br/>
+Jackett – Torrent Proxy
 
-######### UTILITIES ##########
+# UTILITIES
 
-# MariaDB – Database Server for your Apps
-# NextCloud – Your Own Cloud Storage
+MariaDB – Database Server for your Apps<br/>
+NextCloud – Your Own Cloud Storage
 
