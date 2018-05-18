@@ -1,7 +1,7 @@
 #Reference: https://www.smarthomebeginner.com/docker-home-media-server-2018-basic
 #Requirement: Set environmental variables: USERDIR, PUID, PGID, MYSQL_ROOT_PASSWORD, and TZ as explained in the reference.
 
-version: "3.2"
+version: "3"
 services:
 
 ######### FRONTENDS ##########
