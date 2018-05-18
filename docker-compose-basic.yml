@@ -1,5 +1,5 @@
 #Reference: https://www.smarthomebeginner.com/docker-home-media-server-2018-basic
-#Requirement: Set environmental variables: USERDIR, PUID, PGID, and TZ as explained in the reference.
+#Requirement: Set environmental variables: USERDIR, PUID, PGID, MYSQL_ROOT_PASSWORD, and TZ as explained in the reference.
 
 version: "3.2"
 services:
@@ -9,6 +9,7 @@ services:
  #Portainer - WebUI for Containers
   portainer:
     image: portainer/portainer
+    hostname: portainer
     container_name: portainer
     restart: always
     command: --templates http://templates/templates.json
@@ -24,6 +25,7 @@ services:
 # Organizer - Unified HTPC/Home Server Web Interface
   organizr:
     container_name: organizr
+    hostname: organizr
     restart: always
     image: lsiocommunity/organizr
     volumes:
@@ -36,11 +38,26 @@ services:
       - PGID=${PGID}
       - TZ=${TZ}
 
+# WebUI for MariaDB
+  phpmyadmin:
+    hostname: phpmyadmin
+    container_name: phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    links:
+      - mariadb:db
+    ports:
+      - XXXX:80
+    environment:
+      - PMA_HOST=mariadb
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+
 ######### DOCKER RELATED ##########
 
 # Watchtower - Automatic Update of Containers/Apps
   watchtower:
     container_name: watchtower
+    hostname: watchtower
     restart: always
     image: v2tec/watchtower
     volumes:
@@ -52,6 +69,7 @@ services:
 # Home Assistant - Smart Home Hub
   homeassistant:
     container_name: homeassistant
+    hostname: hass
     restart: always
     image: homeassistant/home-assistant
     devices:
@@ -75,6 +93,7 @@ services:
 # Transmission with VPN – Bittorrent Downloader
   transmission-vpn:
     container_name: transmission-vpn
+    hostname: transmission
     image: haugene/transmission-openvpn
     cap_add:
       - NET_ADMIN
@@ -105,15 +124,28 @@ services:
       - TZ=${TZ}
       - TRANSMISSION_RPC_AUTHENTICATION_REQUIRED=true
       - TRANSMISSION_RPC_HOST_WHITELIST="127.0.0.1,192.168.*.*"
-      - TRANSMISSION_RPC_PASSWORD=webui_password
-      - TRANSMISSION_RPC_USERNAME=webui_username
+      - TRANSMISSION_RPC_PASSWORD=${TRANSMISSION_RPC_PASSWORD}
+      - TRANSMISSION_RPC_USERNAME=${TRANSMISSION_RPC_USERNAME}
       - TRANSMISSION_UMASK=002
-      - TRANSMISSION_RATIO_LIMIT=1.00
+      - TRANSMISSION_RATIO_LIMIT=0.01
       - TRANSMISSION_RATIO_LIMIT_ENABLED=true
+      - TRANSMISSION_ALT_SPEED_DOWN=2000
+      - TRANSMISSION_ALT_SPEED_ENABLED=true
+      - TRANSMISSION_ALT_SPEED_UP=15
+      - TRANSMISSION_SPEED_LIMIT_DOWN=6000
+      - TRANSMISSION_SPEED_LIMIT_DOWN_ENABLED=true
+      - TRANSMISSION_SPEED_LIMIT_UP=30
+      - TRANSMISSION_SPEED_LIMIT_UP_ENABLED=true
+      - TRANSMISSION_INCOMPLETE_DIR=/downloads/incomplete
+      - TRANSMISSION_INCOMPLETE_DIR_ENABLED=true
+      - TRANSMISSION_WATCH_DIR=/downloads
+      - TRANSMISSION_WATCH_DIR_ENABLED=true
+      - TRANSMISSION_DOWNLOAD_DIR=/downloads/completed
 
 # qBittorrent without VPN – Bittorrent Downloader (Alternative)
   qbittorrent:
     image: "linuxserver/qbittorrent"
+    hostname: qbittorrent
     container_name: "qbittorrent"
     volumes:
       - ${USERDIR}/docker/qbittorrent:/config
@@ -134,6 +166,7 @@ services:
 # SABnzbd – Usenet (NZB) Downloader
   sabnzbd:
     image: "linuxserver/sabnzbd"
+    hostname: sabnzbd
     container_name: "sabnzbd"
     volumes:
       - ${USERDIR}/docker/sabnzbd:/config
@@ -151,6 +184,7 @@ services:
 # NZBGet – Usenet (NZB) Downloader (Alternative)
   nzbget:
     image: "linuxserver/nzbget"
+    hostname: nzbget
     container_name: "nzbget"
     volumes:
       - ${USERDIR}/docker/sabnzbd:/config
@@ -171,6 +205,7 @@ services:
 # Radarr – Movie Download and Management
   radarr:
     image: "linuxserver/radarr"
+    hostname: radarr
     container_name: "radarr"
     volumes:
       - ${USERDIR}/docker/radarr:/config
@@ -189,6 +224,7 @@ services:
 # CouchPotato – Movie Download and Management (Alternative)
   couchpotato:
     image: "linuxserver/couchpotato"
+    hostname: couchpotato
     container_name: "couchpotato"
     volumes:
       - ${USERDIR}/docker/couchpotato:/config
@@ -207,6 +243,7 @@ services:
 # Sonarr – TV Show Download and Management
   sonarr:
     image: "linuxserver/sonarr"
+    hostname: sonarr
     container_name: "sonarr"
     volumes:
       - ${USERDIR}/docker/sonarr:/config
@@ -225,6 +262,7 @@ services:
 # SickRage – TV Show Download and Management (Alternative)
   sickrage:
     image: "linuxserver/sickrage"
+    hostname: sickrage
     container_name: "sickrage"
     volumes:
       - ${USERDIR}/docker/sickrage:/config
@@ -244,6 +282,7 @@ services:
 # Plex Media Server
   plexms:
     container_name: plexms
+    hostname: plexms
     restart: always
     image: plexinc/pms-docker
     volumes:
@@ -272,6 +311,7 @@ services:
 # Tautulli (aka PlexPy) – Monitoring Plex Usage
   tautulli:
     container_name: tautulli
+    hostname: tautulli
     restart: always
     image: linuxserver/tautulli
     volumes:
@@ -288,6 +328,7 @@ services:
 # Ombi – Accept Requests for your Media Server
   ombi:
     container_name: ombi
+    hostname: ombi
     restart: always
     image: linuxserver/ombi
     volumes:
@@ -305,6 +346,7 @@ services:
 # NZBHydra – NZB Meta Search
   hydra:
     image: "linuxserver/hydra"
+    hostname: hydra
     container_name: "hydra"
     volumes:
       - ${USERDIR}/docker/hydra:/config
@@ -321,6 +363,7 @@ services:
 # Jackett – Torrent Proxy
   jackett:
     image: "linuxserver/jackett"
+    hostname: jackett
     container_name: "jackett"
     volumes:
       - ${USERDIR}/docker/jackett:/config
@@ -341,6 +384,7 @@ services:
   mariadb:
     image: "linuxserver/mariadb"
     container_name: "mariadb"
+    hostname: mariadb
     volumes:
         - ${USERDIR}/docker/mariadb:/config
     ports:
@@ -350,6 +394,7 @@ services:
         mode: host
     restart: always
     environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - PUID=${PUID}
       - PGID=${PGID}
       - TZ=${TZ}
@@ -357,6 +402,7 @@ services:
 # NextCloud – Your Own Cloud Storage
   nextcloud:
     container_name: nextcloud
+    hostname: nextcloud
     restart: always
     image: linuxserver/nextcloud
     volumes:
