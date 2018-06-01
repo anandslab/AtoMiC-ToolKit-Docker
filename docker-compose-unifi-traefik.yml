@@ -1,0 +1,61 @@
+version: "3.6"
+services:
+
+  unifi:
+    hostname: unifi
+    image: linuxserver/unifi:latest
+    restart: always
+    container_name: "unifi"
+    volumes:
+      - ${USERDIR}/docker/unifi:/config
+      - ${USERDIR}/docker/shared:/shared
+    ports:
+      - target: 3478
+        published: 3478
+        protocol: udp
+        mode: host
+      - target: 10001
+        published: 10001
+        protocol: udp
+        mode: host
+      - target: 8080
+        published: 8080
+        protocol: tcp
+        mode: host
+      - target: 8081
+        published: 8081
+        protocol: tcp
+        mode: host
+      - target: 8443
+        published: 8443
+        protocol: tcp
+        mode: host
+      - target: 8880
+        published: 8880
+        protocol: tcp
+        mode: host
+      - target: 6789
+        published: 6789
+        protocol: tcp
+        mode: host
+    networks:
+      - traefik_proxy
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.tags=frontend"
+      - "traefik.frontend.passHostHeader=true"
+      - "traefik.admin.backend=unifi"
+      - "traefik.admin.frontend.rule=Host:unifi.${DOMAINNAME}"
+      - "traefik.admin.port=8443"
+      - "traefik.admin.protocol=https"
+
+networks:
+  traefik_proxy:
+    external:
+      name: traefik_proxy
+  default:
+    driver: bridge
