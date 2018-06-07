@@ -259,6 +259,25 @@ services:
       - PGID=${PGID}
       - TZ=${TZ}
 
+#LIDARR - Music Download and Management
+  lidarr:
+    image: "linuxserver/lidarr"
+    hostname: lidarr
+    container_name: "lidarr"
+    volumes:
+      - ${USERDIR}/docker/lidarr:/config
+      - ${USERDIR}/Downloads:/downloads
+      - ${USERDIR}/media/music:/music
+      - "/etc/localtime:/etc/localtime:ro"
+      - ${USERDIR}/docker/shared:/shared
+    ports:
+      - "XXXX:8686"
+    restart: always
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+      
 # SickRage – TV Show Download and Management (Alternative)
   sickrage:
     image: "linuxserver/sickrage"
