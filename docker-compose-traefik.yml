@@ -41,7 +41,7 @@ services:
     image: portainer/portainer
     container_name: portainer
     restart: always
-    command: --templates http://templates/templates.json
+    command: -H unix:///var/run/docker.sock
 #    ports:
 #      - "XXXX:9000"
     volumes:
