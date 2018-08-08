@@ -228,8 +228,8 @@ services:
     container_name: "couchpotato"
     volumes:
       - ${USERDIR}/docker/couchpotato:/config
-      - ${USERDIR}/Downloads/completed:/downloads"
-      - ${USERDIR}/media/movies:/movies"
+      - ${USERDIR}/Downloads/completed:/downloads
+      - ${USERDIR}/media/movies:/movies
       - ${USERDIR}/docker/shared:/shared
     ports:
       - "XXXX:5050"
