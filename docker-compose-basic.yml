@@ -11,7 +11,7 @@ services:
     image: portainer/portainer
     hostname: portainer
     container_name: portainer
-    restart: always
+    restart: unless-stopped
     command: -H unix:///var/run/docker.sock
     ports:
       - "XXXX:9000"
@@ -26,7 +26,7 @@ services:
   organizr:
     container_name: organizr
     hostname: organizr
-    restart: always
+    restart: unless-stopped
     image: lsiocommunity/organizr
     volumes:
       - ${USERDIR}/docker/organizr:/config
@@ -43,7 +43,7 @@ services:
     hostname: phpmyadmin
     container_name: phpmyadmin
     image: phpmyadmin/phpmyadmin
-    restart: always
+    restart: unless-stopped
     links:
       - mariadb:db
     ports:
@@ -58,7 +58,7 @@ services:
   watchtower:
     container_name: watchtower
     hostname: watchtower
-    restart: always
+    restart: unless-stopped
     image: v2tec/watchtower
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
@@ -70,7 +70,7 @@ services:
   homeassistant:
     container_name: homeassistant
     hostname: hass
-    restart: always
+    restart: unless-stopped
     image: homeassistant/home-assistant
     devices:
       - /dev/ttyUSB0:/dev/ttyUSB0
@@ -99,7 +99,7 @@ services:
       - NET_ADMIN
     devices:
       - /dev/net/tun
-    restart: always
+    restart: unless-stopped
     ports:
     - "XXXX:9091"
     dns:
@@ -155,7 +155,7 @@ services:
       - "XXXX:XXXX"
       - "6881:6881"
       - "6881:6881/udp"
-    restart: always
+    restart: unless-stopped
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
@@ -175,7 +175,7 @@ services:
       - ${USERDIR}/docker/shared:/shared
     ports:
         - "XXXX:8080"
-    restart: always
+    restart: unless-stopped
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
@@ -193,7 +193,7 @@ services:
       - ${USERDIR}/docker/shared:/shared
     ports:
       - "XXXX:6789"
-    restart: always
+    restart: unless-stopped
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
@@ -215,7 +215,7 @@ services:
       - ${USERDIR}/docker/shared:/shared
     ports:
       - "XXXX:7878"
-    restart: always
+    restart: unless-stopped
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
@@ -233,7 +233,7 @@ services:
       - ${USERDIR}/docker/shared:/shared
     ports:
       - "XXXX:5050"
-    restart: always
+    restart: unless-stopped
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
@@ -253,7 +253,7 @@ services:
       - ${USERDIR}/docker/shared:/shared
     ports:
         - "XXXX:8989"
-    restart: always
+    restart: unless-stopped
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
@@ -272,7 +272,7 @@ services:
       - ${USERDIR}/docker/shared:/shared
     ports:
       - "XXXX:8686"
-    restart: always
+    restart: unless-stopped
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
@@ -290,7 +290,7 @@ services:
       - ${USERDIR}/docker/shared:/shared
     ports:
       - "XXXX:8081"
-    restart: always
+    restart: unless-stopped
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
@@ -302,7 +302,7 @@ services:
   plexms:
     container_name: plexms
     hostname: plexms
-    restart: always
+    restart: unless-stopped
     image: plexinc/pms-docker
     volumes:
       - ${USERDIR}/docker/plexms:/config
@@ -331,7 +331,7 @@ services:
   tautulli:
     container_name: tautulli
     hostname: tautulli
-    restart: always
+    restart: unless-stopped
     image: linuxserver/tautulli
     volumes:
       - ${USERDIR}/docker/tautulli/config:/config
@@ -348,7 +348,7 @@ services:
   ombi:
     container_name: ombi
     hostname: ombi
-    restart: always
+    restart: unless-stopped
     image: linuxserver/ombi
     volumes:
       - ${USERDIR}/docker/ombi:/config
@@ -373,7 +373,7 @@ services:
       - ${USERDIR}/docker/shared:/shared
     ports:
       - "XXXX:5075"
-    restart: always
+    restart: unless-stopped
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
@@ -391,7 +391,7 @@ services:
       - ${USERDIR}/docker/shared:/shared
     ports:
       - "XXXX:9117"
-    restart: always
+    restart: unless-stopped
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
@@ -411,7 +411,7 @@ services:
         published: 3306
         protocol: tcp
         mode: host
-    restart: always
+    restart: unless-stopped
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - PUID=${PUID}
@@ -422,7 +422,7 @@ services:
   nextcloud:
     container_name: nextcloud
     hostname: nextcloud
-    restart: always
+    restart: unless-stopped
     image: linuxserver/nextcloud
     volumes:
       - ${USERDIR}/docker/nextcloud:/config
