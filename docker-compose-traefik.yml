@@ -12,7 +12,7 @@ services:
     hostname: traefik
     image: traefik:latest
     container_name: traefik
-    restart: always
+    restart: unless-stopped
     domainname: ${DOMAINNAME}
     networks:
       - default
@@ -49,7 +49,7 @@ services:
   portainer:
     image: portainer/portainer
     container_name: portainer
-    restart: always
+    restart: unless-stopped
     command: -H unix:///var/run/docker.sock
 #    ports:
 #      - "XXXX:9000"
@@ -81,7 +81,7 @@ services:
 # Organizer - Unified HTPC/Home Server Web Interface
   organizr:
     container_name: organizr
-    restart: always
+    restart: unless-stopped
     image: lsiocommunity/organizr
     volumes:
       - ${USERDIR}/docker/organizr:/config
@@ -116,7 +116,7 @@ phpmyadmin:
     hostname: phpmyadmin
     container_name: phpmyadmin
     image: phpmyadmin/phpmyadmin
-    restart: always
+    restart: unless-stopped
     links:
       - mariadb:db
 #    ports:
@@ -149,7 +149,7 @@ phpmyadmin:
   watchtower:
     container_name: watchtower
     hostname: watchtower
-    restart: always
+    restart: unless-stopped
     image: v2tec/watchtower
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
@@ -160,7 +160,7 @@ phpmyadmin:
 # Home Assistant - Smart Home Hub
   homeassistant:
     container_name: homeassistant
-    restart: always
+    restart: unless-stopped
     image: homeassistant/home-assistant
     devices:
       - /dev/ttyUSB0:/dev/ttyUSB0
@@ -206,7 +206,7 @@ phpmyadmin:
       - NET_ADMIN
     devices:
       - /dev/net/tun
-    restart: always
+    restart: unless-stopped
 #    ports:
 #    - "XXXX:9091"
     dns:
@@ -267,7 +267,7 @@ phpmyadmin:
 #      - "XXXX:8080"
       - "6881:6881"
       - "6881:6881/udp"
-    restart: always
+    restart: unless-stopped
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
@@ -303,7 +303,7 @@ phpmyadmin:
       - ${USERDIR}/docker/shared:/shared
 #    ports:
 #        - "XXXX:8080"
-    restart: always
+    restart: unless-stopped
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
@@ -341,7 +341,7 @@ phpmyadmin:
       - ${USERDIR}/docker/shared:/shared
 #    ports:
 #      - "XXXX:7878"
-    restart: always
+    restart: unless-stopped
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
@@ -377,7 +377,7 @@ phpmyadmin:
       - ${USERDIR}/docker/shared:/shared
 #    ports:
 #        - "XXXX:8989"
-    restart: always
+    restart: unless-stopped
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
@@ -414,7 +414,7 @@ phpmyadmin:
       - ${USERDIR}/docker/shared:/shared
 #    ports:
 #      - "XXXX:8686"
-    restart: always
+    restart: unless-stopped
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
@@ -443,7 +443,7 @@ phpmyadmin:
 # Plex Media Server
   plexms:
     container_name: plexms
-    restart: always
+    restart: unless-stopped
     image: plexinc/pms-docker
     volumes:
       - ${USERDIR}/docker/plexms:/config
@@ -489,7 +489,7 @@ phpmyadmin:
 # Tautulli (aka PlexPy) – Monitoring Plex Usage
   tautulli:
     container_name: tautulli
-    restart: always
+    restart: unless-stopped
     image: linuxserver/tautulli
     volumes:
       - ${USERDIR}/docker/tautulli/config:/config
@@ -523,7 +523,7 @@ phpmyadmin:
 # Ombi – Accept Requests for your Media Server
   ombi:
     container_name: ombi
-    restart: always
+    restart: unless-stopped
     image: linuxserver/ombi
     volumes:
       - ${USERDIR}/docker/ombi:/config
@@ -565,7 +565,7 @@ phpmyadmin:
       - ${USERDIR}/docker/shared:/shared
 #    ports:
 #      - "XXXX:5075"
-    restart: always
+    restart: unless-stopped
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
@@ -600,7 +600,7 @@ phpmyadmin:
       - ${USERDIR}/docker/shared:/shared
 #    ports:
 #      - "XXXX:9117"
-    restart: always
+    restart: unless-stopped
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
@@ -638,7 +638,7 @@ phpmyadmin:
         published: 3306
         protocol: tcp
         mode: host
-    restart: always
+    restart: unless-stopped
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - PUID=${PUID}
@@ -648,7 +648,7 @@ phpmyadmin:
 # NextCloud – Your Own Cloud Storage
   nextcloud:
     container_name: nextcloud
-    restart: always
+    restart: unless-stopped
     image: linuxserver/nextcloud
     volumes:
       - ${USERDIR}/docker/nextcloud:/config
