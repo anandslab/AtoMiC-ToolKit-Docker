@@ -32,7 +32,7 @@ My hope is to make this the dockerized version of AtoMiC Toolkit. To start off, 
 
 # MEDIA SERVER APPS
 
-[Plex Media Server](https://www.plex.tv/)<br/>
+[Plex Media Server](https://www.plex.tv/) - Organize and Stream your Media to any device<br/>
 [Tautulli](https://tautulli.com/) (aka PlexPy) – Monitoring Plex Usage<br/>
 [Ombi](https://github.com/tidusjar/Ombi) – Accept Requests for your Media Server<br/>
 
