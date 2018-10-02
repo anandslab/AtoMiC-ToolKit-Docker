@@ -5,44 +5,44 @@ My hope is to make this the dockerized version of AtoMiC Toolkit. To start off, 
 
 # FRONTENDS
 
-Portainer - WebUI for Containers<br/>
-Organizer - Unified HTPC/Home Server Web Interface
+[Portainer](https://portainer.io/) - WebUI for Containers<br/>
+[Organizr](https://github.com/causefx/Organizr) - Unified HTPC/Home Server Web Interface
 
 # DOCKER RELATED
 
-Watchtower - Automatic Update of Containers/Apps
+[Watchtower](https://github.com/v2tec/watchtower) - Automatic Update of Containers/Apps
 
 # SMART HOME APPS
 
-Home Assistant - Smart Home Hub
+[Home Assistant](https://www.home-assistant.io/) - Smart Home Hub
 
 # DOWNLOADERS #
 
-Transmission with VPN – Bittorrent Downloader<br/>
-qBittorrent without VPN – Bittorrent Downloader (Alternative)<br/>
-SABnzbd – Usenet (NZB) Downloader<br/>
-NZBGet – Usenet (NZB) Downloader (Alternative)<br/>
+[Transmission with VPN](https://github.com/haugene/docker-transmission-openvpn) – Bittorrent Downloader<br/>
+[qBittorrent without VPN](https://hub.docker.com/r/linuxserver/qbittorrent/) – Bittorrent Downloader (Alternative)<br/>
+[SABnzbd](https://hub.docker.com/r/linuxserver/sabnzbd/) – Usenet (NZB) Downloader<br/>
+[NZBGet](https://hub.docker.com/r/linuxserver/nzbget/) – Usenet (NZB) Downloader (Alternative)<br/>
 
 # PERSONAL VIDEO RECORDERS
 
-Radarr – Movie Download and Management<br/>
-CouchPotato – Movie Download and Management (Alternative)<br/>
-Sonarr – TV Show Download and Management<br/>
-SickRage – TV Show Download and Management (Alternative)<br/>
+[Radarr](https://radarr.video/) – Movie Download and Management<br/>
+[CouchPotato](https://couchpota.to/) – Movie Download and Management (Alternative)<br/>
+[Sonarr](https://sonarr.tv/) – TV Show Download and Management<br/>
+[SickRage](https://sickrage.github.io/) – TV Show Download and Management (Alternative)<br/>
 
 # MEDIA SERVER APPS
 
-Plex Media Server<br/>
-Tautulli (aka PlexPy) – Monitoring Plex Usage<br/>
-Ombi – Accept Requests for your Media Server<br/>
+[Plex Media Server](https://www.plex.tv/) - Organize and Stream your Media to any device<br/>
+[Tautulli](https://tautulli.com/) (aka PlexPy) – Monitoring Plex Usage<br/>
+[Ombi](https://github.com/tidusjar/Ombi) – Accept Requests for your Media Server<br/>
 
 # SEARCHERS
 
-NZBHydra – NZB Meta Search<br/>
-Jackett – Torrent Proxy
+[NZBHydra](https://github.com/theotherp/nzbhydra) – NZB Meta Search<br/>
+[Jackett](https://github.com/Jackett/Jackett) – Torrent Proxy
 
 # UTILITIES
 
-MariaDB – Database Server for your Apps<br/>
-NextCloud – Your Own Cloud Storage
+[MariaDB](https://mariadb.org/) – Database Server for your Apps<br/>
+[NextCloud](https://nextcloud.com/) – Your Own Cloud Storage
 
