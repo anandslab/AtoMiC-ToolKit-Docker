@@ -112,7 +112,7 @@ services:
       - "traefik.frontend.headers.frameDeny=true"
 
 # phpMyAdmin - WebUI for MariaDB
-phpmyadmin:
+  phpmyadmin:
     hostname: phpmyadmin
     container_name: phpmyadmin
     image: phpmyadmin/phpmyadmin
