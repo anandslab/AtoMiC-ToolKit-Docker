@@ -31,6 +31,7 @@ services:
 #      - "traefik.frontend.rule=Host:${DOMAINNAME}; PathPrefixStrip: /traefik"
       - "traefik.port=8080"
       - "traefik.docker.network=traefik_proxy"
+      - "traefik.frontend.auth.basic.usersFile=/shared/.htpasswd"
       - "traefik.frontend.headers.SSLRedirect=true"
       - "traefik.frontend.headers.STSSeconds=315360000"
       - "traefik.frontend.headers.browserXSSFilter=true"
