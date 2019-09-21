@@ -115,7 +115,6 @@ services:
       traefik.port: 80
       traefik.frontend.rule: Host:${DOMAINNAME},www.${DOMAINNAME}
       traefik.frontend.headers.SSLHost: ${DOMAINNAME}
-#      traefik.frontend.rule: Host:${DOMAINNAME}; PathPrefix: organizr
       traefik.docker.network: traefik_proxy
       traefik.frontend.passHostHeader: "true"
       traefik.frontend.headers.SSLForceHost: "true"
@@ -349,7 +348,6 @@ services:
 
 # SABnzbd – Usenet (NZB) Downloader
   sabnzbd:
-  sabnzbd:
     image: linuxserver/sabnzbd
     container_name: sabnzbd
     hostname: sabnzbd
@@ -435,7 +433,6 @@ services:
 
 # Sonarr – TV Show Download and Management
   sonarr:
-#    image: aront/sonarr
     image: linuxserver/sonarr
     container_name: sonarr
     hostname: sonarr
@@ -629,22 +626,6 @@ services:
       - ${USERDIR}/docker/ombi:/config
       - ${USERDIR}/docker/shared:/shared
     labels:
-      - "traefik.enable=true"
-      - "traefik.backend=ombi"
-      - "traefik.frontend.rule=Host:ombi.${DOMAINNAME}"
-#      - "traefik.frontend.rule=Host:${DOMAINNAME}; PathPrefix: /ombi"
-      - "traefik.port=3579"
-      - "traefik.docker.network=traefik_proxy"
-      - "traefik.frontend.headers.SSLRedirect=true"
-      - "traefik.frontend.headers.STSSeconds=315360000"
-      - "traefik.frontend.headers.browserXSSFilter=true"
-      - "traefik.frontend.headers.contentTypeNosniff=true"
-      - "traefik.frontend.headers.forceSTSHeader=true"
-      - "traefik.frontend.headers.SSLHost=example.com"
-      - "traefik.frontend.headers.STSIncludeSubdomains=true"
-      - "traefik.frontend.headers.STSPreload=true"
-      - "traefik.frontend.headers.frameDeny=true"
-    labels:
       traefik.enable: "true"
       traefik.backend: ombi
       traefik.protocol: http
@@ -756,19 +737,19 @@ services:
     image: "linuxserver/mariadb"
     container_name: "mariadb"
     hostname: mariadb
-    volumes:
-        - ${USERDIR}/docker/mariadb:/config
+    restart: always
     ports:
       - target: 3306
         published: 3306
         protocol: tcp
         mode: host
-    restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - PUID=${PUID}
       - PGID=${PGID}
       - TZ=${TZ}
+    volumes:
+        - ${USERDIR}/docker/mariadb:/config
 
 # NextCloud – Your Own Cloud Storage
   nextcloud:
@@ -787,22 +768,6 @@ services:
       - ${USERDIR}/docker/nextcloud:/config
       - ${USERDIR}/shared_data:/data
       - ${USERDIR}/docker/shared:/shared
-    labels:
-      - "traefik.enable=true"
-      - "traefik.backend=nextcloud"
-      - "traefik.frontend.rule=Host:nextcloud.${DOMAINNAME}"
-      - "traefik.port=443"
-      - "traefik.protocol=https"
-      - "traefik.docker.network=traefik_proxy"
-      - "traefik.frontend.headers.SSLRedirect=true"
-      - "traefik.frontend.headers.STSSeconds=315360000"
-      - "traefik.frontend.headers.browserXSSFilter=true"
-      - "traefik.frontend.headers.contentTypeNosniff=true"
-      - "traefik.frontend.headers.forceSTSHeader=true"
-      - "traefik.frontend.headers.SSLHost=example.com"
-      - "traefik.frontend.headers.STSIncludeSubdomains=true"
-      - "traefik.frontend.headers.STSPreload=true"
-      - "traefik.frontend.headers.frameDeny=true"
     labels:
       traefik.enable: "true"
       traefik.backend: nextcloud
